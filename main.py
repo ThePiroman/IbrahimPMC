@@ -65,7 +65,7 @@ class Client(discord.Client):
 
         self.recent_responses = []
 
-        self.debug = True
+        self.debug = False
 
         super().__init__(intents=intents, **options)
 
@@ -119,7 +119,7 @@ class Client(discord.Client):
     async def on_queue_enter(self, message, user, initializer = None, add_ping = True):
         if not self.debug:
             if user in self.queue:
-                message.channel.send(f"{user.display_name} failed to enter queue, reason: in queue already")
+                await message.channel.send(f"{user.display_name} failed to enter queue, reason: in queue already")
                 print(f"{user} failed to enter queue, reason: in queue already")
                 return
 
